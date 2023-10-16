@@ -10,9 +10,8 @@ import '../components/widgets/my_text_form_field.dart';
 class EditTaskScreen extends StatelessWidget {
 
   TaskModel taskModel;
-  int index;
 
-  EditTaskScreen({required this.taskModel,required this.index});
+  EditTaskScreen({required this.taskModel});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +25,9 @@ class EditTaskScreen extends StatelessWidget {
         backgroundColor: AppColors.orange,
         title: TextCustom(text: ' Edit Task ',),
         centerTitle: true,
+        iconTheme: const IconThemeData(
+          color: AppColors.white,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -72,6 +74,7 @@ class EditTaskScreen extends StatelessWidget {
                     controller: cubit.editStartDateController,
                     textInputAction: TextInputAction.next,
                     prefixIcon: Icons.timer_outlined,
+                    readOnly: true,
                     validator: (value) {
                       if ((value ?? '').isEmpty) {
                         return 'Please, Enter your Task Start Date';
@@ -98,6 +101,7 @@ class EditTaskScreen extends StatelessWidget {
                     keyboardType: TextInputType.none,
                     controller: cubit.editEndDateController,
                     prefixIcon: Icons.timer_off_outlined,
+                    readOnly: true,
                     validator: (value) {
                       if ((value ?? '').isEmpty) {
                         return 'Please, Enter your Task End Time';
@@ -131,10 +135,7 @@ class EditTaskScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (cubit.editFormKey.currentState!.validate()) {
-                    taskModel.title=cubit.editTitleController.text;
-                    taskModel.describtion=cubit.editDetailsController.text;
-                    taskModel.startDate=cubit.editStartDateController.text;
-                    taskModel.endDate=cubit.editEndDateController.text;
+                    cubit.editTask();
                     cubit.clearAllData();
                     Navigator.push(
                       context,
@@ -166,14 +167,9 @@ class EditTaskScreen extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                    cubit.deleteTask(index: index);
+                    cubit.deleteTask();
                     cubit.clearAllData();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ToDoScreen(),
-                      ),
-                    );
+                    Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                   primary: AppColors.orange,

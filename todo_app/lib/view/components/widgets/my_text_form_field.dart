@@ -14,6 +14,7 @@ class MyTextFormField extends StatefulWidget {
   String? Function(String?)? validator;
   void Function()? onTap;
   String? initialValue;
+  bool readOnly ;
 
   MyTextFormField({
     this.hintText,
@@ -27,6 +28,7 @@ class MyTextFormField extends StatefulWidget {
     this.validator,
     this.onTap,
     this.initialValue,
+    this.readOnly=false,
   });
 
   @override
@@ -39,15 +41,20 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: TextFormField(
+        cursorColor: AppColors.orange,
         keyboardType: widget.keyboardType,
         controller: widget.controller,
         textInputAction: widget.textInputAction,
         autofocus: false,
+        readOnly: widget.readOnly,
         obscureText: widget.obscureText,
         initialValue: widget.initialValue,
         decoration: InputDecoration(
           isDense: true,
           labelText: widget.hintText,
+          floatingLabelStyle: const TextStyle(
+            color: AppColors.orange,
+          ),
           labelStyle: TextStyle(
             color: AppColors.orange,
           ),

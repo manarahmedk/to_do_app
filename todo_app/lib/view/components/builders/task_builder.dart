@@ -7,22 +7,17 @@ import '../../screens/edit_task_screen.dart';
 
 class TaskBuilder extends StatelessWidget {
   TaskModel taskModel;
-  int index;
+  void Function()? onTap;
 
-  TaskBuilder({required this.taskModel,required this.index});
+  TaskBuilder({required this.taskModel,this.onTap});
 
   @override
   Widget build(BuildContext context) {
     var cubit = ToDoCubit.get(context);
     return InkWell(
-      onTap: (){
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => EditTaskScreen(taskModel: cubit.tasks[index], index: index,),
-          ),
-        );
-      },
+      borderRadius: BorderRadius.circular(15),
+      onTap:onTap,
+
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Container(

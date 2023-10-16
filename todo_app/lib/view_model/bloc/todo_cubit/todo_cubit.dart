@@ -9,6 +9,8 @@ class ToDoCubit extends Cubit<ToDoStates>{
 
   ToDoCubit() : super(ToDoInitialState());
 
+  int currentIndex=0;
+
   static ToDoCubit get(context)=>BlocProvider.of<ToDoCubit>(context);
 
   var titleController=TextEditingController();
@@ -26,30 +28,35 @@ class ToDoCubit extends Cubit<ToDoStates>{
 
   List<TaskModel> tasks=[];
 
-  void addTask({
-    required TaskModel task}){
+  void addTask(){
+    TaskModel task=TaskModel(
+      title: titleController.text,
+      describtion: detailsController.text,
+      startDate: startDateController.text,
+      endDate: endDateController.text,
+    );
     tasks.add(task);
-
+    clearAllData();
     emit(AddTaskState());
   }
 
+  void editTask(){
+    tasks[currentIndex].title=editTitleController.text;
+    tasks[currentIndex].describtion=editDetailsController.text;
+    tasks[currentIndex].startDate=editStartDateController.text;
+    tasks[currentIndex].endDate=editEndDateController.text;
+    emit(EditTaskState());
+  }
+  void deleteTask(){
+    tasks.removeAt(currentIndex);
+    emit(DeleteTaskState());
+  }
   void clearAllData(){
-    titleController.text='';
-    detailsController.text='';
-    startDateController.text='';
-    endDateController.text='';
+    titleController.clear();
+    detailsController.clear();
+    startDateController.clear();
+    endDateController.clear();
     emit(ClearAllDataState());
-  }
-  void editTask({
-    required int index}){
-    tasks.removeAt(index);
-    emit(DeleteTaskState());
-  }
-
-  void deleteTask({
-    required int index}){
-    tasks.removeAt(index);
-    emit(DeleteTaskState());
   }
 
 }

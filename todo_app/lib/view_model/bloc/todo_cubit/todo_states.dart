@@ -6,5 +6,7 @@ class AddTaskState extends ToDoStates{}
 
 class DeleteTaskState extends ToDoStates{}
 
+class EditTaskState extends ToDoStates{}
+
 class ClearAllDataState extends ToDoStates{}
 
