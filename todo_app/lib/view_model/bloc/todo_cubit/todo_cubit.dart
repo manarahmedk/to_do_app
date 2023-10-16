@@ -39,7 +39,12 @@ class ToDoCubit extends Cubit<ToDoStates>{
     clearAllData();
     emit(AddTaskState());
   }
-
+  void setData(int index){
+    editTitleController.text=tasks[index].title;
+    editDetailsController.text=tasks[index].describtion;
+    editStartDateController.text=tasks[index].startDate;
+    editEndDateController.text=tasks[index].endDate;
+  }
   void editTask(){
     tasks[currentIndex].title=editTitleController.text;
     tasks[currentIndex].describtion=editDetailsController.text;

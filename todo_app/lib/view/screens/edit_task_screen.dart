@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/view/components/widgets/text_custom.dart';
 import 'package:todo_app/view/screens/todo_screen.dart';
 import 'package:todo_app/view_model/utils/colors.dart';
-
 import '../../model/task_model.dart';
 import '../../view_model/bloc/todo_cubit/todo_cubit.dart';
 import '../components/widgets/my_text_form_field.dart';
@@ -16,10 +15,6 @@ class EditTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = ToDoCubit.get(context);
-    cubit.editTitleController.text=taskModel.title;
-    cubit.editDetailsController.text=taskModel.describtion;
-    cubit.editStartDateController.text=taskModel.startDate;
-    cubit.editEndDateController.text=taskModel.endDate;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.orange,

@@ -35,6 +35,7 @@ class ToDoScreen extends StatelessWidget {
                 taskModel: cubit.tasks[index],
                 onTap: () {
                   cubit.currentIndex = index;
+                  cubit.setData(index);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

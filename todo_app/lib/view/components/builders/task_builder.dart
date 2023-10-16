@@ -3,7 +3,6 @@ import 'package:todo_app/view/components/widgets/text_custom.dart';
 import 'package:todo_app/view_model/utils/colors.dart';
 import '../../../model/task_model.dart';
 import '../../../view_model/bloc/todo_cubit/todo_cubit.dart';
-import '../../screens/edit_task_screen.dart';
 
 class TaskBuilder extends StatelessWidget {
   TaskModel taskModel;
