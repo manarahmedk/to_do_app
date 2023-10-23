@@ -5,12 +5,24 @@ import 'package:todo_app/view_model/utils/colors.dart';
 import '../components/widgets/my_text_form_field.dart';
 
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+ // Dio dio=Dio();
 
   GlobalKey<FormState> formkey=GlobalKey<FormState>();
+
   TextEditingController? emailController;
+
   TextEditingController? passwordController;
+
   bool obscureText=true ;
+
 
   @override
   Widget build(BuildContext context) {
